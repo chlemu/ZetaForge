@@ -1,0 +1,80 @@
+{
+  "information": {
+    "id": "LLfsim",
+    "name": "LL fsim",
+    "description": "LL functional simulator (fsim)",
+    "system_versions": [
+      "0.1"
+    ],
+    "block_version": "block version number",
+    "block_source": "core/blocks/LLfsim",
+    "block_type": "compute"
+  },
+  "inputs": {
+    "archModel": {
+      "type": "str",
+      "connections": [
+        {
+          "variable": "path",
+          "block": "file-dcaawkiw2ns6"
+        }
+      ],
+      "relays": []
+    },
+    "floorplan": {
+      "type": "str",
+      "connections": [
+        {
+          "variable": "path",
+          "block": "file-88juv3dr8u4y"
+        }
+      ],
+      "relays": []
+    },
+    "prog": {
+      "type": "str",
+      "connections": [
+        {
+          "variable": "YAML",
+          "block": "new-python-e41588dk8dgl"
+        }
+      ],
+      "relays": []
+    }
+  },
+  "outputs": {
+    "occupancy": {
+      "type": "str",
+      "connections": [
+        {
+          "variable": "image_paths_view",
+          "block": "view-images-lklrvvqozmqy"
+        }
+      ],
+      "relays": []
+    }
+  },
+  "action": {
+    "container": {
+      "image": "new-python",
+      "version": "LLfsim-igf777cqocst",
+      "command_line": [
+        "python",
+        "entrypoint.py"
+      ]
+    }
+  },
+  "views": {
+    "node": {
+      "behavior": "modal",
+      "active": "True or False",
+      "title_bar": {},
+      "preview": {},
+      "html": "",
+      "pos_x": "1677",
+      "pos_y": "799",
+      "pos_z": "999"
+    }
+  },
+  "events": {}
+}

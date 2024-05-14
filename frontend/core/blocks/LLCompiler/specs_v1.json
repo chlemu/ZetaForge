@@ -1,0 +1,55 @@
+{
+  "information": {
+    "id": "new-python",
+    "name": "LL Compiler",
+    "description": "Lemurian Labs Compiler for python pytorch code",
+    "system_versions": [
+      "0.1"
+    ],
+    "block_version": "block version number",
+    "block_source": "core/blocks/LLCompiler",
+    "block_type": "compute"
+  },
+  "inputs": {
+    "src_prog": {
+      "type": "str",
+      "connections": [],
+      "relays": []
+    }
+  },
+  "outputs": {
+    "dot": {
+      "type": "str",
+      "connections": [],
+      "relays": []
+    },
+    "YAML": {
+      "type": "str",
+      "connections": [],
+      "relays": []
+    }
+  },
+  "action": {
+    "container": {
+      "image": "new-python",
+      "version": "latest",
+      "command_line": [
+        "python",
+        "entrypoint.py"
+      ]
+    }
+  },
+  "views": {
+    "node": {
+      "behavior": "modal",
+      "active": "True or False",
+      "title_bar": {},
+      "preview": {},
+      "html": "",
+      "pos_x": "300",
+      "pos_y": "200",
+      "pos_z": "999"
+    }
+  },
+  "events": {}
+}

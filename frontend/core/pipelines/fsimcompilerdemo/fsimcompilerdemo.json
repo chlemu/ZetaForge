@@ -1,0 +1,367 @@
+{
+  "pipeline": {
+    "LLfsim-igf777cqocst": {
+      "information": {
+        "id": "LLfsim",
+        "name": "LL fsim",
+        "description": "LL functional simulator (fsim)",
+        "system_versions": [
+          "0.1"
+        ],
+        "block_version": "block version number",
+        "block_source": "core/blocks/LLfsim",
+        "block_type": "compute"
+      },
+      "inputs": {
+        "archModel": {
+          "type": "str",
+          "connections": [
+            {
+              "variable": "path",
+              "block": "file-dcaawkiw2ns6"
+            }
+          ],
+          "relays": []
+        },
+        "floorplan": {
+          "type": "str",
+          "connections": [
+            {
+              "variable": "path",
+              "block": "file-88juv3dr8u4y"
+            }
+          ],
+          "relays": []
+        },
+        "prog": {
+          "type": "str",
+          "connections": [
+            {
+              "variable": "YAML",
+              "block": "new-python-e41588dk8dgl"
+            }
+          ],
+          "relays": []
+        }
+      },
+      "outputs": {
+        "occupancy": {
+          "type": "str",
+          "connections": [
+            {
+              "variable": "image_paths_view",
+              "block": "view-images-lklrvvqozmqy"
+            }
+          ],
+          "relays": []
+        }
+      },
+      "action": {
+        "container": {
+          "image": "new-python",
+          "version": "LLfsim-igf777cqocst",
+          "command_line": [
+            "python",
+            "entrypoint.py"
+          ]
+        }
+      },
+      "views": {
+        "node": {
+          "behavior": "modal",
+          "active": "True or False",
+          "title_bar": {},
+          "preview": {},
+          "html": "",
+          "pos_x": "1677",
+          "pos_y": "799",
+          "pos_z": "999"
+        }
+      },
+      "events": {}
+    },
+    "new-python-e41588dk8dgl": {
+      "information": {
+        "id": "new-python",
+        "name": "LL Compiler",
+        "description": "Lemurian Labs Compiler for python pytorch code",
+        "system_versions": [
+          "0.1"
+        ],
+        "block_version": "block version number",
+        "block_source": "core/blocks/LLCompiler",
+        "block_type": "compute"
+      },
+      "inputs": {
+        "src_prog": {
+          "type": "str",
+          "connections": [],
+          "relays": []
+        }
+      },
+      "outputs": {
+        "dot": {
+          "type": "str",
+          "connections": [
+            {
+              "variable": "path_to_dotGraph",
+              "block": "view-dotGraph-59xfvkbaojsi"
+            }
+          ],
+          "relays": []
+        },
+        "YAML": {
+          "type": "str",
+          "connections": [
+            {
+              "variable": "prog",
+              "block": "LLfsim-igf777cqocst"
+            }
+          ],
+          "relays": []
+        }
+      },
+      "action": {
+        "container": {
+          "image": "new-python",
+          "version": "new-python-e41588dk8dgl",
+          "command_line": [
+            "python",
+            "entrypoint.py"
+          ]
+        }
+      },
+      "views": {
+        "node": {
+          "behavior": "modal",
+          "active": "True or False",
+          "title_bar": {},
+          "preview": {},
+          "html": "",
+          "pos_x": "336",
+          "pos_y": "824.9591836734694",
+          "pos_z": "999"
+        }
+      },
+      "events": {}
+    },
+    "view-dotGraph-59xfvkbaojsi": {
+      "information": {
+        "id": "view-dotGraph",
+        "name": "View TiDaL Graph",
+        "description": "Generates an HTML file with a unique name and returns the file name.",
+        "block_version": "block version number",
+        "block_source": "core/blocks/view-dotGraph",
+        "block_type": "view",
+        "system_versions": [
+          "0.1"
+        ]
+      },
+      "inputs": {
+        "path_to_dotGraph": {
+          "type": "List[file]",
+          "connections": [
+            {
+              "variable": "dot",
+              "block": "new-python-e41588dk8dgl"
+            }
+          ],
+          "relays": []
+        }
+      },
+      "outputs": {
+        "html": {
+          "type": "file",
+          "connections": [],
+          "relays": []
+        }
+      },
+      "action": {
+        "container": {
+          "image": "view-images",
+          "version": "view-dotGraph-59xfvkbaojsi",
+          "command_line": [
+            "python",
+            "entrypoint.py"
+          ]
+        }
+      },
+      "views": {
+        "mode": "modal",
+        "node": {
+          "active": "True or False",
+          "title_bar": {
+            "background_color": "#D55908"
+          },
+          "preview": {
+            "active": "true"
+          },
+          "html": "",
+          "pos_x": "1097",
+          "pos_y": "123.04081632653062",
+          "pos_z": "999, this is the z-index for 2D canvas"
+        }
+      },
+      "events": {}
+    },
+    "file-dcaawkiw2ns6": {
+      "information": {
+        "id": "file",
+        "name": "File",
+        "description": "File parameter input.",
+        "block_version": "block version number",
+        "block_source": "core/blocks",
+        "block_type": "compute",
+        "system_versions": [
+          "0.1"
+        ]
+      },
+      "inputs": {},
+      "outputs": {
+        "path": {
+          "type": "file",
+          "connections": [
+            {
+              "variable": "archModel",
+              "block": "LLfsim-igf777cqocst"
+            }
+          ],
+          "relays": []
+        }
+      },
+      "action": {
+        "parameters": {
+          "path": {
+            "type": "file",
+            "value": "C:\\Users\\carri\\git\\thaumaturge\\fsim\\archModels\\fireball_16x16.yaml"
+          }
+        }
+      },
+      "views": {
+        "node": {
+          "active": "True or False",
+          "title_bar": {
+            "background_color": "#909090"
+          },
+          "preview": {},
+          "html": "<input type='file' name='fileInput' parameters-file/>",
+          "pos_x": "1129",
+          "pos_y": "400.9591836734694",
+          "pos_z": "999, this is the z-index for 2D canvas"
+        }
+      },
+      "events": {}
+    },
+    "file-88juv3dr8u4y": {
+      "information": {
+        "id": "file",
+        "name": "File",
+        "description": "File parameter input.",
+        "block_version": "block version number",
+        "block_source": "core/blocks",
+        "block_type": "compute",
+        "system_versions": [
+          "0.1"
+        ]
+      },
+      "inputs": {},
+      "outputs": {
+        "path": {
+          "type": "file",
+          "connections": [
+            {
+              "variable": "floorplan",
+              "block": "LLfsim-igf777cqocst"
+            }
+          ],
+          "relays": []
+        }
+      },
+      "action": {
+        "parameters": {
+          "path": {
+            "type": "file",
+            "value": ""
+          }
+        }
+      },
+      "views": {
+        "node": {
+          "active": "True or False",
+          "title_bar": {
+            "background_color": "#909090"
+          },
+          "preview": {},
+          "html": "<input type='file' name='fileInput' parameters-file/>",
+          "pos_x": "929.6531210140313",
+          "pos_y": "609.269371811225",
+          "pos_z": "999, this is the z-index for 2D canvas"
+        }
+      },
+      "events": {}
+    },
+    "view-images-lklrvvqozmqy": {
+      "information": {
+        "id": "view-images",
+        "name": "View Images",
+        "description": "Generates an HTML file with a unique name and returns the file name.",
+        "block_version": "block version number",
+        "block_source": "core/blocks/view-images",
+        "block_type": "view",
+        "system_versions": [
+          "0.1"
+        ]
+      },
+      "inputs": {
+        "image_paths_view": {
+          "type": "List[file]",
+          "connections": [
+            {
+              "variable": "occupancy",
+              "block": "LLfsim-igf777cqocst"
+            }
+          ],
+          "relays": []
+        }
+      },
+      "outputs": {
+        "html": {
+          "type": "file",
+          "connections": [],
+          "relays": []
+        }
+      },
+      "action": {
+        "container": {
+          "image": "view-images",
+          "version": "view-images-lklrvvqozmqy",
+          "command_line": [
+            "python",
+            "entrypoint.py"
+          ]
+        }
+      },
+      "views": {
+        "mode": "modal",
+        "node": {
+          "active": "True or False",
+          "title_bar": {
+            "background_color": "#D55908"
+          },
+          "preview": {
+            "active": "true"
+          },
+          "html": "",
+          "pos_x": "2038.0408163265306",
+          "pos_y": "604",
+          "pos_z": "999, this is the z-index for 2D canvas"
+        }
+      },
+      "events": {}
+    }
+  },
+  "sink": "C:\\Users\\carri\\git\\ZetaForge\\frontend\\core\\pipelines\\fsimcompilerdemo",
+  "build": "C:\\Python312\\Lib\\site-packages\\zetaforge\\executables\\ZetaForge-0.1.3-windows-x64\\.cache\\pipeline-h84d0rtzanos",
+  "name": "fsimcompilerdemo",
+  "id": "pipeline-h84d0rtzanos"
+}
